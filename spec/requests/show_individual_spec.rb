@@ -22,7 +22,7 @@ RSpec.describe "GET /rating_questions/:id" do
 
   context "asking to get a question that doesn't exist" do
     before do
-      get("/rating_questions/i-will-never-exist")
+      get("/rating_questions/i-will-never-exist.json")
     end
 
     it "returns a 404 Not Found" do

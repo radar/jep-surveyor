@@ -1,4 +1,6 @@
 class RatingQuestionsController < ApplicationController
+  # respond_to :html, :js
+  
   def index
     @rating_questions = RatingQuestion.all
   end
@@ -12,6 +14,7 @@ class RatingQuestionsController < ApplicationController
 
     if @rating_question.save
       redirect_to @rating_question, notice: "Your question has been created."
+      
     else
       render 'new'
     end
@@ -23,6 +26,7 @@ class RatingQuestionsController < ApplicationController
   
   def show
     @rating_question = RatingQuestion.find(params[:id])
+    head 404 unless @rating_question
   end
 
   def update
@@ -41,7 +45,7 @@ class RatingQuestionsController < ApplicationController
 
   private
   def rating_question_params
-    params.require(:rating_question).permit(:title, :text, :tag)
+    params.require(:rating_question).permit(:title)
   end
   
 

@@ -1,12 +1,13 @@
 require "rails_helper"
 
-RSpec.describe "POST /ratingQuestions" do
+RSpec.describe "POST /rating_questions" do
   let(:new_title) { "Hello World" }
   let(:new_tag) { "new tag" }
 
+
   context "when the request has a body" do
     before do
-      post "/ratingQuestions.json", params: { title: new_title, tag: new_tag }
+      post "/rating_questions.json", params: { rating_question: { title: new_title, tag: new_tag } }
     end
 
     it "returns a 201 Created" do
@@ -23,7 +24,7 @@ RSpec.describe "POST /ratingQuestions" do
   end
 
   context "when the request has no body" do
-    let(:response) { HTTP.post("#{SERVER}/ratingQuestions") }
+    let(:response) { post "/ratingQuestions" }
 
     it "returns a 400 Bad Request" do
       expect(response.status).to eq(400)
@@ -31,7 +32,7 @@ RSpec.describe "POST /ratingQuestions" do
   end
 
   context "when the request has a blank title" do
-    let(:response) { HTTP.post("#{SERVER}/ratingQuestions", json: { title: "" }) }
+    let(:response) { post "/ratingQuestions", json: { title: "" } }
 
     it "returns a 422 Invalid Resource" do
       expect(response.status).to eq(422)
