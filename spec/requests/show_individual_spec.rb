@@ -4,7 +4,7 @@ require 'pry'
 RSpec.describe "GET /rating_questions/:id" do
   let(:new_title) { "helo i'm a title" }
   let(:new_tag) { "i'm a tag" } 
-  let(:question) { RatingQuestion.create! }
+  let(:question) { RatingQuestion.create!(title: "hola") }
 
   before do
     get "/rating_questions/#{question.id}.json"

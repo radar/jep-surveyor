@@ -1,5 +1,4 @@
 class RatingQuestionsController < ApplicationController
-  # respond_to :html, :js
   
   def index
     @rating_questions = RatingQuestion.all
@@ -10,14 +9,28 @@ class RatingQuestionsController < ApplicationController
   end
 
   def create
+    head 400 if !rating_question_params[:title]
+ 
     @rating_question = RatingQuestion.new(rating_question_params)
 
     if @rating_question.save
-      redirect_to @rating_question, notice: "Your question has been created."
-      
+      respond_to do |format|
+        format.html { redirect_to @rating_question, notice: "Your question has been created." }
+        format.json { render 'show', status: 201 }
+      end
     else
-      render 'new'
+      errors = { 'errors' => @rating_question.errors.messages }
+
+      respond_to do |format|
+        
+        format.html { redirect_to @rating_question, notice: errors }
+
+        format.json { render json: errors, status: 422 }
+        # binding.pry  
+      end
     end
+
+    
   end
 
   def edit
@@ -45,7 +58,7 @@ class RatingQuestionsController < ApplicationController
 
   private
   def rating_question_params
-    params.require(:rating_question).permit(:title)
+    params.require(:rating_question).permit(:title, :tag)
   end
   
 
