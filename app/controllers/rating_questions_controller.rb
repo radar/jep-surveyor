@@ -43,7 +43,10 @@ class RatingQuestionsController < ApplicationController
 
   def destroy
     @rating_question.delete
-    redirect_to "/", notice: "Your question has been deleted."
+    respond_to do |format|
+      format.html { redirect_to "/", notice: "Your question has been deleted." }
+      format.json { head 204 }
+    end
   end
 
   private
