@@ -1,12 +1,10 @@
 require "rails_helper"
 
 RSpec.describe "Update the question" do
-  before {
-    @question_1 = RatingQuestion.create!(title: "hola")
-  }
+  let(:question) { RatingQuestion.create!(title: "hola") }
   context "question exists" do
     it "update one questions" do
-      visit "/rating_questions/#{@question_1["id"]}/edit"
+      visit "/rating_questions/#{question.id}/edit"
       fill_in "Title", with: "Is Capybara Cool?"
       click_button "Update Rating question"
       within(".questions") do
