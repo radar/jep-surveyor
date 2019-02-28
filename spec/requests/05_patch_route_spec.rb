@@ -2,17 +2,17 @@ require "rails_helper"
 
 RSpec.describe "PATCH /rating_questions.json/:id" do
   context "when the question exists" do
+    let!(:question) do
+      RatingQuestion.create(title: "Hello World")
+    end
+
     it "returns a 200 OK" do
-      post "/rating_questions.json", params: {rating_question: {title: "Hello World"}}
-      question = JSON.parse(response.body)
-      patch "/rating_questions/#{question["id"]}", params: {rating_question: {tag: "greetings"}}
+      patch "/rating_questions/#{question.id}.json", params: {rating_question: {tag: "greetings"}}
       expect(response.status).to eq(200)
     end
 
     it "returns a question -- with an additional field" do
-      post "/rating_questions.json", params: {rating_question: {title: "Hello World"}}
-      question = JSON.parse(response.body)
-      patch "/rating_questions/#{question["id"]}", params: {rating_question: {tag: "greetings"}}
+      patch "/rating_questions/#{question.id}.json", params: {rating_question: {tag: "greetings"}}
       question = JSON.parse(response.body)
 
       expect(question.is_a?(Hash)).to eq(true)
