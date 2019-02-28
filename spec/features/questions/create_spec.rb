@@ -10,11 +10,24 @@ RSpec.describe "Creating questions" do
     within(".flash-notice") do
       expect(page).to have_content("Your question has been created.")
     end
-
     within(".questions") do
       expect(page).to have_content("Is Capybara Cool?")
     end
+    expect(RatingQuestion.count).to eq(1)
   end
 
-  it "cannot create a new question without a title"
+  it "cannot create a new question without a title" do
+    visit "/"
+    click_link "New Question"
+    fill_in "Title", with: ""
+    click_button "Create Rating question"
+
+    within(".flash-notice") do
+      expect(page).to have_content("Must have a title")
+    end
+    within(".questions") do
+      expect(page).to have_content("")
+    end
+    expect(RatingQuestion.count).to eq(0)
+  end
 end
