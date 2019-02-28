@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 RSpec.describe "PUT /rating_questions.json/:id" do
   context "when the question exists" do

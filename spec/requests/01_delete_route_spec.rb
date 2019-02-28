@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 RSpec.describe "DELETE /rating_questions.json/:id" do
   context "with an existing question" do

@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 RSpec.describe "GET /rating_questions.json" do
   it "returns a 200 OK" do
