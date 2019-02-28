@@ -1,5 +1,12 @@
 class RatingQuestionsController < ApplicationController
   
+  before_action :find_question, only: [:show, :destroy, :edit, :update]
+
+  def find_question
+    @rating_question = RatingQuestion.find(params[:id])
+    return head 404 unless @rating_question
+  end
+
   def index
     @rating_questions = RatingQuestion.all
   end
@@ -26,11 +33,8 @@ class RatingQuestionsController < ApplicationController
         format.html { redirect_to @rating_question, notice: errors }
 
         format.json { render json: errors, status: 422 }
-        # binding.pry  
       end
     end
-
-    
   end
 
   def edit
@@ -38,15 +42,9 @@ class RatingQuestionsController < ApplicationController
   end
   
   def show
-    @rating_question = RatingQuestion.find(params[:id])
-    head 404 unless @rating_question
   end
 
   def update
-    @rating_question = RatingQuestion.find(params[:id])
-    
-    return head 404 if !@rating_question
-
     @rating_question.update(rating_question_params)
     
     notice = "Your question has been updated"
@@ -59,11 +57,10 @@ class RatingQuestionsController < ApplicationController
   end
 
   def edit
-    @rating_question = RatingQuestion.find(params[:id])
   end
 
   def destroy
-    rating_question = RatingQuestion.find(params[:id])
+    @rating_question.destroy
   end
 
 
