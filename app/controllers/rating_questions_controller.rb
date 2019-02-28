@@ -43,15 +43,27 @@ class RatingQuestionsController < ApplicationController
   end
 
   def update
-    @rating_questions = rating_questions.find(params[:id])
+    @rating_question = RatingQuestion.find(params[:id])
+    
+    return head 404 if !@rating_question
+
+    @rating_question.update(rating_question_params)
+    
+    notice = "Your question has been updated"
+
+    respond_to do |format|
+      format.html { redirect_to @rating_question, notice: notice }
+
+      format.json { render @rating_question, status: 200 }
+    end
   end
 
   def edit
-    @rating_questions = rating_questions.find(params[:id])
+    @rating_question = RatingQuestion.find(params[:id])
   end
 
   def destroy
-    rating_questions = rating_questions.find(params[:id])
+    rating_question = RatingQuestion.find(params[:id])
   end
 
 
