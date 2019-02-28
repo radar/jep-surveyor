@@ -18,8 +18,11 @@ class RatingQuestionsController < ApplicationController
         format.json { render json: serialize_question(@rating_question), status: 201 }
       end
     else
-      errors = {"errors" => @rating_question.errors.messages}
-      render json: errors, status: 422
+      respond_to do |format|
+        errors = {"errors" => @rating_question.errors.messages}
+        format.html { redirect_to "/", alert: "Your question was not save!" }
+        format.json { render json: errors, status: 422 }
+      end
     end
   end
 
@@ -32,11 +35,15 @@ class RatingQuestionsController < ApplicationController
 
   def update
     @rating_question.update(question_params)
-    render json: serialize_question(@rating_question), status: 200
+    respond_to do |format|
+      format.html { redirect_to "/", notice: "Your question has been updated." }
+      format.json { render json: serialize_question(@rating_question), status: 200 }
+    end
   end
 
   def destroy
     @rating_question.delete
+    redirect_to "/", notice: "Your question has been deleted."
   end
 
   private
