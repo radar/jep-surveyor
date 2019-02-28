@@ -15,7 +15,7 @@ class RatingQuestionsController < ApplicationController
       # flash[:notice] = "Your question has been created."
       respond_to do |format|
         format.html { redirect_to "/", notice: "Your question has been created." }
-        format.json { render json: serialize_question(@rating_question), status: 201 }
+        format.json { render :show, status: 201 }
       end
     else
       respond_to do |format|
@@ -27,7 +27,6 @@ class RatingQuestionsController < ApplicationController
   end
 
   def show
-    render json: serialize_question(@rating_question), status: 200
   end
 
   def edit
@@ -37,7 +36,7 @@ class RatingQuestionsController < ApplicationController
     @rating_question.update(question_params)
     respond_to do |format|
       format.html { redirect_to "/", notice: "Your question has been updated." }
-      format.json { render json: serialize_question(@rating_question), status: 200 }
+      format.json { render :show }
     end
   end
 
@@ -55,16 +54,8 @@ class RatingQuestionsController < ApplicationController
     params.require(:rating_question).permit(:title, :tag)
   end
 
-  def serialize_question(question)
-    {
-      id: question.id.to_s,
-      title: question.title,
-      tag: question.tag,
-    }
-  end
-
   def find_question
-    @rating_question = RatingQuestion.find(params["id"])
+    @rating_question = RatingQuestion.find(params[:id])
     unless @rating_question
       head 404
       return
