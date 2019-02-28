@@ -21,7 +21,7 @@ RSpec.describe "Creating questions" do
     click_link "New Question"
     click_button "Create Rating question"
 
-    within(".flash-errors") do
+    within(".flash-alert") do
       expect(page).to have_content("Your question was not save!")
     end
   end
