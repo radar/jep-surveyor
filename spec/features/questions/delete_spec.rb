@@ -9,7 +9,7 @@ RSpec.describe "deletes a question" do
       within("#question_#{question.id}") do
         click_link "Delete Question"
       end
-      # accept_confirm 
+      accept_confirm 
       # page.accept_alert
       # page.driver.browser.switch_to.alert.accept
 

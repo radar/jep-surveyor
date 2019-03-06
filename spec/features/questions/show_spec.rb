@@ -11,10 +11,5 @@ RSpec.describe "Show a question" do
     end
   end
 
-  context "Question doesn't exit" do
-    it "lists a specific question with an idea" do
-      visit "/rating_questions/it_never_exist"
-      expect(page.status_code).to eq(404)
-    end
-  end
+  
 end

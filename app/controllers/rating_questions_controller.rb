@@ -62,8 +62,6 @@ class RatingQuestionsController < ApplicationController
     end
   end
 
-
-
   private
   def rating_question_params
     params.require(:rating_question).permit(:title, :tag)
