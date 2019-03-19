@@ -10,8 +10,6 @@ RSpec.describe "deletes a question" do
         click_link "Delete Question"
       end
       accept_confirm 
-      # page.accept_alert
-      # page.driver.browser.switch_to.alert.accept
 
       within(".flash-notice") do
         expect(page).to have_content("Your question has been deleted.")
