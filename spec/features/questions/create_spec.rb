@@ -7,6 +7,7 @@ RSpec.describe "Creating questions" do
     fill_in "Title", with: "Is Capybara Cool?"
     click_button "Create Rating question"
 
+
     within(".flash-notice") do
       expect(page).to have_content("Your question has been created.")
     end
@@ -22,6 +23,7 @@ RSpec.describe "Creating questions" do
     fill_in "Title", with: ""
     click_button "Create Rating question"
 
+    
     within(".flash-notice") do
       expect(page).to have_content("Must have a title")
     end

@@ -11,6 +11,9 @@
 
   <body class="back">
     <h2 class="title">Kasia's Surveyor in Rails</h2>
+    <div class="flash-notice">
+      <p><%= flash[:notice] %></p>
+    </div>
     <%= yield %>
   </body>
 </html>

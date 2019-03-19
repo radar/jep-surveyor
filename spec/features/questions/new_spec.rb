@@ -1,6 +1,6 @@
 require "rails_helper"
-require 'pry'
-RSpec.describe "display all questions" do
+
+RSpec.describe "display question form" do
   it "displays form" do
     visit "/rating_questions/new"
     expect(page).to have_selector("label[for='rating_question_title']")

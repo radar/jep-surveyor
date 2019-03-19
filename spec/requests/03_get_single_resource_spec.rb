@@ -1,5 +1,5 @@
 require "rails_helper"
-require 'pry'
+
 RSpec.describe "GET /ratingQuestions/:id" do
   context "when the question exists" do
     let!(:question) do

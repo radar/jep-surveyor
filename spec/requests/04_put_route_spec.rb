@@ -5,6 +5,7 @@ RSpec.describe "PUT /ratingQuestions/:id" do
     let!(:question) do
       RatingQuestion.create!(title: "Hello World!")
     end
+    
     it "returns a 200 OK" do
       put "/rating_questions/#{question.id}.json", params: { rating_question: { title: "Hello Mars" } }
       expect(response.status).to eq(200)

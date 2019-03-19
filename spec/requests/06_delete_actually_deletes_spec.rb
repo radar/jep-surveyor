@@ -5,6 +5,7 @@ RSpec.describe "DELETE /ratingQuestions/:id" do
     let!(:question) do
       RatingQuestion.create!(title: "Hello World!", tag: "World")
     end
+    
     it "actually deletes the question" do
       delete "/rating_questions/#{question.id}"
       get "/rating_questions/#{question.id}"

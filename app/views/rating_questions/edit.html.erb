@@ -1,5 +1,6 @@
 
-<div class="form"><%= form_with model: @rating_question, url: rating_question_path,local: true do |f| %>
+<div class="form">
+  <%= form_with model: @rating_question, url: rating_question_path,local: true do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %>
   <%= f.label :tag %>
@@ -7,8 +8,6 @@
   <%= f.submit %>
   <% end %>
   <%= link_to 'Back', rating_questions_path %>
-  <div class="flash-notice"><%= flash[:notice] %>
-  </div>
   <div class="single">
     <div class='questions'>
       <% if @rating_question %>

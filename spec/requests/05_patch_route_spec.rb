@@ -5,6 +5,7 @@ RSpec.describe "PATCH /ratingQuestions/:id" do
     let!(:question) do
       RatingQuestion.create!(title: "Hello World!", tag: "World")
     end
+    
     it "returns a 200 OK" do
       patch "/rating_questions/#{question.id}.json", params: { rating_question: { tag: "Mars" } }
       new_body = JSON.parse(response.body)
