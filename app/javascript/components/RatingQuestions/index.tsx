@@ -17,6 +17,7 @@ class RatingQuestions extends React.Component<RatingQuestionsProps, {}> {
 
   render() {
     return(
+      link
       <div className={styles.list} data-automation-id='questions-list'>
         {this.props.questions.map((question) => <RatingQuestion key={question.id} {...question} />)}
       </div>
