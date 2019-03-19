@@ -5,6 +5,8 @@ import RatingQuestion from "./RatingQuestion";
 interface Question {
   id: string;
   title: string;
+  url: string;
+  question: Question;
 }
 
 interface RatingQuestionsProps {
@@ -18,7 +20,6 @@ class RatingQuestions extends React.Component<RatingQuestionsProps, {}> {
         {this.props.questions.map(question => (
           <RatingQuestion key={question.id} {...question} />
         ))}
-        <h2>HELLOOOOOOO</h2>
       </div>
     );
   }
