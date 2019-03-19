@@ -6,6 +6,10 @@ class RatingQuestionsController < ApplicationController
   def new
     @rating_question = RatingQuestion.new
   end
+ 
+  def show
+    @rating_question = RatingQuestion.find(params[:id])
+  end
 
   def create
     @rating_question = RatingQuestion.new(question_params)
