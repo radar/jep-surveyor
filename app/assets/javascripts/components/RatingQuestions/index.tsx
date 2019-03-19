@@ -1,5 +1,4 @@
 import * as React from "react";
-import axios from "axios";
 import * as styles from "./index.module.scss";
 import RatingQuestion from "./RatingQuestion";
 
