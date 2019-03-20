@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as styles from "./RatingQuestion.module.scss";
 import Form from "./Form";
-
+import axios from "axios";
 interface RatingQuestionProps {
   id: string;
   title: string;
@@ -15,7 +15,32 @@ class RatingQuestion extends React.Component<RatingQuestionProps> {
   };
 
   handleClick = () => {
-    return <Form form_url={this.props.form_url} update={true} />;
+    if (this.state.formVisible === false) {
+      this.setState({
+        formVisible: true
+      });
+    } else {
+      this.setState({
+        formVisible: false
+      });
+    }
+  };
+
+  handleDelete = () => {
+    axios.delete(`/rating_questions/${this.props.id}`);
+  };
+
+  renderForm = () => {
+    if (this.state.formVisible === true) {
+      return (
+        <Form
+          form_url={this.props.form_url}
+          update={true}
+          id={this.props.id}
+          url={this.props.url}
+        />
+      );
+    }
   };
 
   render() {
@@ -26,6 +51,8 @@ class RatingQuestion extends React.Component<RatingQuestionProps> {
           <a href={this.props.url}>show</a>
         </span>
         <button onClick={this.handleClick}>edit</button>
+        <button onClick={this.handleDelete}>delete</button>
+        {this.renderForm()}
       </div>
     );
   }

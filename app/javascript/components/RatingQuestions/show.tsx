@@ -9,6 +9,8 @@ interface Question {
 
 interface RatingQuestionProps {
   question: Question;
+  id: string;
+  url: string;
 }
 
 class ShowRatingQuestion extends React.Component<RatingQuestionProps, {}> {
@@ -19,7 +21,11 @@ class ShowRatingQuestion extends React.Component<RatingQuestionProps, {}> {
       // </div>
       <div>
         {this.props.question.title}
-        <Update form_url={this.props.question.url} />
+        <Update
+          form_url={this.props.question.url}
+          id={this.props.id}
+          url={this.props.url}
+        />
       </div>
     );
   }
