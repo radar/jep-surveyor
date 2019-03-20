@@ -1,4 +1,5 @@
 class RatingQuestionsProps
+  include Rails.application.routes.url_helpers
   attr_reader :rating_questions
 
   def initialize(rating_questions)
@@ -11,15 +12,12 @@ class RatingQuestionsProps
         {
           id: rating_question.id.to_s,
           title: rating_question.title,
-          url: to_url(rating_question)
+          url: rating_question_path(rating_question)
         }
-      end
+      end,
+      form_url: rating_questions_path
+
+  
     }
   end
-
-  def to_url(rating_question)
-    "/rating_questions/#{rating_question.id}" 
-  end
-
-
 end

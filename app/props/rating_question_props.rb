@@ -1,8 +1,9 @@
 class RatingQuestionProps
-  attr_reader :rating_question
+  attr_reader :rating_question, :url
 
-  def initialize(rating_question)
+  def initialize(rating_question, url)
     @rating_question = rating_question
+    @url = url
   end
 
   def to_props
@@ -11,13 +12,8 @@ class RatingQuestionProps
         {
           id: rating_question.id.to_s,
           title: rating_question.title,
-          url: to_url(rating_question)
+          url: url
         }
     }
   end
-
-  def to_url(rating_question)
-    "/rating_questions/#{rating_question.id}" 
-  end
-
 end
