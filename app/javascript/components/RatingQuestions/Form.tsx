@@ -1,4 +1,5 @@
 import * as React from "react";
+// import * as styles from "./Form.module.scss";
 
 interface FormProps {
   form_url: string;
@@ -15,7 +16,11 @@ class Form extends React.Component<FormProps> {
   render() {
     return (
       <div>
-        <form action={this.props.form_url} method="post">
+        <form
+          // className={styles.form}
+          action={this.props.form_url}
+          method="post"
+        >
           {this.renderMethod()}
           <label>
             Title:

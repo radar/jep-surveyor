@@ -8,6 +8,7 @@ interface Question {
   title: string;
   url: string;
   question: Question;
+  form_url: string;
 }
 
 interface RatingQuestionsProps {
@@ -23,7 +24,11 @@ class RatingQuestions extends React.Component<RatingQuestionsProps, {}> {
           <Create form_url={this.props.form_url} update={false} />
         </div>
         {this.props.questions.map(question => (
-          <RatingQuestion key={question.id} {...question} />
+          <RatingQuestion
+            key={question.id}
+            {...question}
+            form_url={question.form_url}
+          />
         ))}
       </div>
     );
