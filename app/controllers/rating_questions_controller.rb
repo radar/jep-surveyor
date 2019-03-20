@@ -32,8 +32,10 @@ class RatingQuestionsController < ApplicationController
   def destroy
     @rating_question = RatingQuestion.find(params[:id])
     @rating_question.destroy
-    # redirect_to "/rating_questions"
-    return 204
+    respond_to do |format|
+      format.html { redirect_to "/rating_questions" }
+      format.json { head 204 }
+    end
   end
 
   def update
