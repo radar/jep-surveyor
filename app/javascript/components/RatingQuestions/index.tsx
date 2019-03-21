@@ -3,6 +3,8 @@ import * as React from 'react'
 import axios from 'axios'
 import * as styles from './index.module.scss'
 import RatingQuestion from './RatingQuestion'
+import AddRatingQuestion from './AddRatingQuestion';
+// import { ratingQuestion } from './RatingQuestion.module.scss';
 
 
 interface Question {
@@ -13,19 +15,34 @@ interface Question {
 
 interface RatingQuestionsProps {
   questions: Question[]
-  // rating_question_url: string
 }
 
 class RatingQuestions extends React.Component<RatingQuestionsProps, {}> {
+  state = {
+    questions: this.props.questions
+  }
+  handleDelete: (e) => {    
+  }
+
+  addQuestion = (question) => {
+    let questions = this.state.questions
+    questions.push(question)
+    this.setState({questions})
+  }
 
   render() {
+    console.log(this.state.questions)
     return(
       <div className={styles.list} data-automation-id='questions-list'>
-        {this.props.questions.map((question) => 
+        {this.state.questions.map((question) => 
               <a href={question.rating_question_url}>
-                <RatingQuestion key={question.id} {...question} /></a>
+                <RatingQuestion key={question.id} {...question} /></a>,
+            //   <a className="btn btn-danger btn-xs"
+            //     onClick={this.handleDelete} >
+            //    Delete
+            //  </a>
           )}
-      <a href="rating_questions/new">create a new question</a>
+      <AddRatingQuestion rating_question_url="/rating_questions.json" addQuestion={this.addQuestion}/>
       </div>
 
     )
