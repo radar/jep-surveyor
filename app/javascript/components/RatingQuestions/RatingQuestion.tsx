@@ -7,11 +7,20 @@ interface RatingQuestionProps {
   title: string;
   url: string;
   form_url: string;
+  deleteQuestion?: Function;
 }
 
 class RatingQuestion extends React.Component<RatingQuestionProps> {
   state = {
-    formVisible: false
+    formVisible: false,
+    title: this.props.title
+  };
+
+  updateTitle = title => {
+    this.setState({
+      title: title,
+      formVisible: false
+    });
   };
 
   handleClick = () => {
@@ -26,8 +35,12 @@ class RatingQuestion extends React.Component<RatingQuestionProps> {
     }
   };
 
-  handleDelete = () => {
-    axios.delete(`/rating_questions/${this.props.id}`);
+  handleDelete = e => {
+    e.preventDefault();
+    axios.delete(`/rating_questions/${this.props.id}.json`).then(result => {
+      console.log(result);
+      this.props.deleteQuestion(this.props.id);
+    });
   };
 
   renderForm = () => {
@@ -38,6 +51,7 @@ class RatingQuestion extends React.Component<RatingQuestionProps> {
           update={true}
           id={this.props.id}
           url={this.props.url}
+          updateTitle={this.updateTitle}
         />
       );
     }
@@ -46,7 +60,7 @@ class RatingQuestion extends React.Component<RatingQuestionProps> {
   render() {
     return (
       <div className={styles.ratingQuestion}>
-        {this.props.title}{" "}
+        {this.state.title}{" "}
         <span>
           <a href={this.props.url}>show</a>
         </span>

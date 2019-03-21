@@ -7,7 +7,6 @@ interface Question {
   id: string;
   title: string;
   url: string;
-  question: Question;
   form_url: string;
 }
 
@@ -16,9 +15,25 @@ interface RatingQuestionsProps {
   form_url: string;
   id: string;
   url: string;
+  addQuestions?: Function;
 }
 
-class RatingQuestions extends React.Component<RatingQuestionsProps, {}> {
+class RatingQuestions extends React.Component<RatingQuestionsProps> {
+  state = {
+    questions: this.props.questions
+  };
+
+  deleteQuestion = id => {
+    let questions = this.props.questions.filter(question => question.id !== id);
+    console.log(questions);
+    this.setState({ questions });
+  };
+
+  addQuestion = question => {
+    let questions = this.props.questions.push(question);
+    this.setState({ questions });
+  };
+
   render() {
     return (
       <div className={styles.list} data-automation-id="questions-list">
@@ -28,6 +43,7 @@ class RatingQuestions extends React.Component<RatingQuestionsProps, {}> {
             update={false}
             id={this.props.id}
             url={this.props.url}
+            addQuestion={this.addQuestion}
           />
         </div>
         {this.props.questions.map(question => (
@@ -35,6 +51,7 @@ class RatingQuestions extends React.Component<RatingQuestionsProps, {}> {
             key={question.id}
             {...question}
             form_url={question.form_url}
+            deleteQuestion={this.deleteQuestion}
           />
         ))}
       </div>

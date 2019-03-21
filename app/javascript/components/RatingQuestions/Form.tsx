@@ -6,6 +6,8 @@ interface FormProps {
   update: boolean;
   id: string;
   url: string;
+  updateTitle?: Function;
+  addQuestion?: Function;
 }
 
 class Form extends React.Component<FormProps> {
@@ -30,13 +32,13 @@ class Form extends React.Component<FormProps> {
       axios
         .patch(`${url}.json`, { rating_question: { title: this.state.title } })
         .then(result => {
-          // NEED TO RENDER UPDATED QUESTION
-          console.log("im in patch");
+          console.log(result.data.title);
+          this.props.updateTitle(result.data.title);
         });
     } else {
-      axios.post("/rating_questions", { title }).then(result => {
-        // NEED TO RENDER NEWLY ADDED QUESTION
+      axios.post("/rating_questions.json", { title }).then(result => {
         console.log(result.data);
+        this.props.addQuestion(result.data);
       });
     }
   };

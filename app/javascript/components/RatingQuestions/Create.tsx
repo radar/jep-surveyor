@@ -6,6 +6,7 @@ interface CreateProps {
   update: boolean;
   id: string;
   url: string;
+  addQuestion: Function;
 }
 
 class Create extends React.Component<CreateProps> {
@@ -18,6 +19,7 @@ class Create extends React.Component<CreateProps> {
           update={false}
           id={this.props.id}
           url={this.props.url}
+          addQuestion={this.props.addQuestion}
         />
       </div>
     );
