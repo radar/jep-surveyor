@@ -24,12 +24,12 @@ class RatingQuestions extends React.Component<RatingQuestionsProps> {
   };
 
   deleteQuestion = id => {
-    let questions = this.props.questions.filter(question => question.id !== id);
+    let questions = this.state.questions.filter(question => question.id !== id);
     this.setState({ questions });
   };
 
   addQuestion = question => {
-    let questions = this.props.questions;
+    let questions = this.state.questions;
     questions.push(question);
     this.setState({ questions });
   };
