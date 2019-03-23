@@ -1,5 +1,6 @@
 import * as React from "react";
 import axios from "axios";
+import * as styles from "./Form.module.scss";
 
 interface FormProps {
   form_url: string;
@@ -27,17 +28,13 @@ class Form extends React.Component<FormProps> {
     let url = this.props.url;
 
     if (this.props.update === true) {
-      console.log("HELLO THERE IM EDIT");
-      console.log(this.props.url);
       axios
         .patch(`${url}.json`, { rating_question: { title: this.state.title } })
         .then(result => {
-          console.log(result.data.title);
           this.props.updateTitle(result.data.title);
         });
     } else {
       axios.post("/rating_questions.json", { title }).then(result => {
-        console.log(result.data);
         this.props.addQuestion(result.data);
       });
     }
@@ -52,7 +49,7 @@ class Form extends React.Component<FormProps> {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        <form className={styles.form} onSubmit={this.handleSubmit}>
           {this.renderMethod()}
           <label>
             Title:

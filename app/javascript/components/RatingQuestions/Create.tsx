@@ -1,5 +1,6 @@
 import * as React from "react";
 import Form from "./Form";
+import * as styles from "./Form.module.scss";
 
 interface CreateProps {
   form_url: string;
@@ -13,7 +14,7 @@ class Create extends React.Component<CreateProps> {
   render() {
     return (
       <div>
-        <p>Create a New Question:</p>
+        <p className={styles.title}>Create a New Question:</p>
         <Form
           form_url={this.props.form_url}
           update={false}

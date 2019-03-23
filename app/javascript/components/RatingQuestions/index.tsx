@@ -25,12 +25,12 @@ class RatingQuestions extends React.Component<RatingQuestionsProps> {
 
   deleteQuestion = id => {
     let questions = this.props.questions.filter(question => question.id !== id);
-    console.log(questions);
     this.setState({ questions });
   };
 
   addQuestion = question => {
-    let questions = this.props.questions.push(question);
+    let questions = this.props.questions;
+    questions.push(question);
     this.setState({ questions });
   };
 
@@ -46,7 +46,7 @@ class RatingQuestions extends React.Component<RatingQuestionsProps> {
             addQuestion={this.addQuestion}
           />
         </div>
-        {this.props.questions.map(question => (
+        {this.state.questions.map(question => (
           <RatingQuestion
             key={question.id}
             {...question}
