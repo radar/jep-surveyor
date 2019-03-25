@@ -11,7 +11,7 @@ class Form extends React.Component {
   }
   addNew = () => {
     axios
-      .post('http://localhost:3000/rating_questions.json', {
+      .post(this.props.url[current_host.size], {
         title: this.state.title
       })
       .then(response => this.props.addQuestion(response.data))
@@ -19,7 +19,7 @@ class Form extends React.Component {
 
   editExisting = () => {
     axios
-      .patch(`http://localhost:3000/rating_questions/${this.props.id}`, {
+      .patch(this.props.url[current_host.size] + `${this.props.id}`, {
         title: this.state.title
       })
       .then(response =>
@@ -48,7 +48,9 @@ class Form extends React.Component {
               onChange={this.handleChange}
             />
           </label>
-          <input type='submit' value='Submit' />
+          <button type='submit' value='Submit'>
+            Submit
+          </button>
         </form>
         <a href='/'>All</a>
         <h3>{this.props.title}</h3>

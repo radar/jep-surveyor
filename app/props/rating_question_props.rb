@@ -3,6 +3,7 @@ class RatingQuestionProps
 
   def initialize(rating_questions)
     @rating_questions = rating_questions
+    @url = "http://localhost:3000/rating_questions"
   end
 
   def to_props
@@ -10,7 +11,8 @@ class RatingQuestionProps
       questions: @rating_questions.map do |rating_question|
         {
           id: rating_question.id.to_s,
-          title: rating_question.title
+          title: rating_question.title,
+          
         }
       end
     }
