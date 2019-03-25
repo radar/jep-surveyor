@@ -14,9 +14,9 @@ class RatingQuestionsController < ApplicationController
  
 
   def create
-   if request.body.size.zero?
-    return render json: {}, status: 400
-   end
+  #  if request.body.size.zero?
+  #   return render json: {}, status: 400
+  #  end
     @rating_question = RatingQuestion.create(question_params)
     if @rating_question.save
       respond_to do |format|
