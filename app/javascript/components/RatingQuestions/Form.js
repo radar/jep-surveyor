@@ -1,62 +1,62 @@
-import * as React from 'react'
-import * as styles from './Form.module.scss'
-import axios from 'axios'
+import * as React from "react";
+import * as styles from "./Form.module.scss";
+import axios from "axios";
 
 class Form extends React.Component {
   state = {
-    title: ''
-  }
+    title: ""
+  };
   handleChange = event => {
-    this.setState({ title: event.target.value })
-  }
+    this.setState({ title: event.target.value });
+  };
   addNew = () => {
     axios
-      .post(this.props.url[current_host.size], {
+      .post("http://localhost:3000/rating_questions.json", {
         title: this.state.title
       })
-      .then(response => this.props.addQuestion(response.data))
-  }
+      .then(response => this.props.addQuestion(response.data));
+  };
 
   editExisting = () => {
     axios
-      .patch(this.props.url[current_host.size] + `${this.props.id}`, {
+      .patch(`http://localhost:3000/rating_questions/${this.props.id}`, {
         title: this.state.title
       })
       .then(response =>
         this.setState({ title: this.state.title, editingTitle: false })
-      )
-  }
+      );
+  };
 
   handleFormSubmit = event => {
-    event.preventDefault()
+    event.preventDefault();
     if (this.props.update) {
-      this.editExisting()
+      this.editExisting();
     } else {
-      this.addNew()
+      this.addNew();
     }
-  }
+  };
 
-  render () {
+  render() {
     return (
       <div className={styles.formStyling}>
         <form onSubmit={this.handleFormSubmit}>
           <label>
-            Title:
+            <span className={styles.formTitle}>Title:</span>
             <input
-              type='text'
+              type="text"
               value={this.state.value}
               onChange={this.handleChange}
             />
           </label>
-          <button type='submit' value='Submit'>
-            Submit
-          </button>
+          <input type="submit" value="Submit" />
         </form>
-        <a href='/'>All</a>
+        <a className={styles.options} href="/">
+          All
+        </a>
         <h3>{this.props.title}</h3>
       </div>
-    )
+    );
   }
 }
 
-export default Form
+export default Form;

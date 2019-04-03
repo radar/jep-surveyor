@@ -1,12 +1,12 @@
 require "rails_helper"
 
 RSpec.describe "Creating questions" do
-  # let!(:question) { RatingQuestion.create!(title: "is rails great?") }
+  let!(:question) { RatingQuestion.create!(title: "is rails great?") }
   it "creates a new question" do
     visit "/"
     fill_in "Title", with: "Is Capybara Cool?"
     click_button "Submit"
-    binding.pry
+    # binding.pry
     within("[data-automation-id=questions-list]") do
       expect(page).to have_content("Is Capybara Cool?")
     end

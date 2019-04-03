@@ -1,4 +1,21 @@
 .listOfQuestions {
-  border: 3px solid black;
-  background: dodgerblue;
+  border: 5px dotted black;
+  background: rgb(187, 206, 224);
+  border-radius: 4px;
+}
+.listOfQuestionsLink {
+  border: 1px solid rgb(91, 48, 190);
+  background: rgb(115, 73, 182);
+  border-radius: 4px;
+  color: white;
+}
+.mainTitle {
+  border: 1px solid rgb(91, 48, 190);
+  background: linear-gradient(to left, #d53a9d, #451d8a);
+  border-radius: 4px;
+  color: white;
+  text-align: center;
+}
+.mainBody {
+  text-align: center;
 }

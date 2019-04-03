@@ -1,9 +1,17 @@
 .ratingQuestion {
   font: 12pt "Comic Sans MS";
-  background: linear-gradient(to left, #743ad5, #d53a9d);
+  background: linear-gradient(to left, #d53a9d, #451d8a);
   color: white;
   border: 5px solid black;
   border-radius: 10px;
   padding: 1rem;
   margin: 1rem;
+}
+.options {
+  border: 1px solid rgb(91, 48, 190);
+  background: rgb(115, 73, 182);
+  border-radius: 4px;
+  color: white;
+
+  margin: 2px 1px 2px 1px;
 }

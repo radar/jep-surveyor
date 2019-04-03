@@ -24,7 +24,7 @@ class RatingQuestions extends React.Component<
   RatingQuestionsState
 > {
   state = {
-    questions: this.props.questions,
+    questions: this.props.questions
   };
   addQuestion = question => {
     console.log("this is addQuestion" + question);
@@ -55,9 +55,11 @@ class RatingQuestions extends React.Component<
 
   render() {
     return (
-      <div>
-        <h1>React+Rails</h1>
-        <a href="/rating_questions/new">New Question</a>
+      <div className={styles.mainBody}>
+        <h1 className={styles.mainTitle}>React+Rails</h1>
+        <a className={styles.listOfQuestionsLink} href="/rating_questions/new">
+          New Question
+        </a>
         <Form addQuestion={this.addQuestion} />
         <div
           className={styles.listOfQuestions}
@@ -69,7 +71,9 @@ class RatingQuestions extends React.Component<
               {...question}
             />
           ))}
-          <a href="/rating_questions">all questions</a>
+          <a className={styles.listOfQuestionsLink} href="/rating_questions">
+            all questions
+          </a>
         </div>
       </div>
     );

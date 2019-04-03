@@ -11,13 +11,13 @@ interface RatingQuestionProps {
 
 class RatingQuestion extends React.Component<RatingQuestionProps> {
   state = {
-    editingTitle: false,
+    editingTitle: false
     // value: this.props.title
   };
   changeQuestion = value => {
     axios
       .put(`http://localhost:3000/rating_questions/${this.props.id}`, {
-        title: value,
+        title: value
       })
       .then(response => this.setState({ title: value, editingTitle: false }));
   };
@@ -36,9 +36,13 @@ class RatingQuestion extends React.Component<RatingQuestionProps> {
         <a href={`/rating_questions/${this.props.id}`}>
           <div className={styles.ratingQuestion}>{this.props.title}</div>
         </a>
-        <a onClick={this.beginEditing}>edit</a>
+        <a className={styles.options} onClick={this.beginEditing}>
+          edit
+        </a>
         {this.renderEditForm()}
-        <a onClick={this.confirmDelete}>delete</a>
+        <a className={styles.options} onClick={this.confirmDelete}>
+          delete
+        </a>
       </div>
     );
   }
