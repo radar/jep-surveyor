@@ -1,21 +1,44 @@
 import * as React from 'react'
 import * as styles from './ShowRatingQuestion.module.scss'
-import RatingQuestion from './RatingQuestion'
+import Form from './Form'
 
 interface Question {
     title: string,
-    id: string
+    id: string,
+    url: string
 }
 
 interface ShowRatingQuestionProps {
     question: Question
 }
 
-class ShowRatingQuestion extends React.Component<ShowRatingQuestionProps> {
+interface ShowRatingQuestionState {
+    question: Question
+}
+
+class ShowRatingQuestion extends React.Component<ShowRatingQuestionProps, ShowRatingQuestionState> {
+    state = {
+        question: this.props.question
+    }
+
+    updateQuestion = (question) => {
+        console.log(question)
+        this.setState({
+            question: question
+        })
+    }
+
+    deleteQuestion = (question) => {
+        console.log(question)
+        this.setState({
+            question: question
+        })
+    }
     render() {
         return(
             <div className={styles.ratingQuestion} data-automation-id='question'>
-                {this.props.question.title}
+                {this.state.question.title}
+                <Form url={this.props.question.url} updateQuestion={this.updateQuestion}    update={true}/>
             </div>
         )
     }

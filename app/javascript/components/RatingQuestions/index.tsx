@@ -3,25 +3,35 @@ import * as React from 'react'
 import axios from 'axios'
 import * as styles from './index.module.scss'
 import RatingQuestion from './RatingQuestion'
-import AddRatingQuestion from './AddRatingQuestion';
-// import { ratingQuestion } from './RatingQuestion.module.scss';
-
+import Form from './Form';
 
 interface Question {
   id: string,
   title: string,
-  rating_question_url: string
+  url: string
 }
 
 interface RatingQuestionsProps {
-  questions: Question[]
+  questions: Question[],
+  url: string
 }
 
 class RatingQuestions extends React.Component<RatingQuestionsProps, {}> {
   state = {
     questions: this.props.questions
   }
-  handleDelete: (e) => {    
+
+  handleDelete= (e) => {
+    e.preventDefault();
+    console.log("delete!")
+    let url = this.state.questions["url"]
+    axios.delete()
+    .then((result) => {
+        console.log(result.data)
+        this.setState(questions = result.data)
+        // this.props.questions = result.question
+    })
+    }
   }
 
   addQuestion = (question) => {
@@ -36,13 +46,14 @@ class RatingQuestions extends React.Component<RatingQuestionsProps, {}> {
       <div className={styles.list} data-automation-id='questions-list'>
         {this.state.questions.map((question) => 
               <a href={question.rating_question_url}>
-                <RatingQuestion key={question.id} {...question} /></a>,
-            //   <a className="btn btn-danger btn-xs"
-            //     onClick={this.handleDelete} >
-            //    Delete
-            //  </a>
+                <RatingQuestion key={question.id} {...question} />
+                  <a className="btn btn-danger btn-xs"
+                    onClick={this.handleDelete} >
+                    Delete
+                  </a>
+                </a>,
           )}
-      <AddRatingQuestion rating_question_url="/rating_questions.json" addQuestion={this.addQuestion}/>
+      <Form rating_question_url="/rating_questions.json" addQuestion={this.addQuestion}/>
       </div>
 
     )

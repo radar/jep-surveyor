@@ -3,8 +3,7 @@ import * as styles from './RatingQuestion.module.scss'
 
 interface RatingQuestionProps {
   id: string,
-  title: string,
-  rating_question_url: string
+  title: string
 }
 
 class RatingQuestion extends React.Component<RatingQuestionProps> {
@@ -16,3 +15,4 @@ class RatingQuestion extends React.Component<RatingQuestionProps> {
 }
 
 export default RatingQuestion
+
