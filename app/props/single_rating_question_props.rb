@@ -3,7 +3,6 @@ class SingleRatingQuestionProps
 
   def initialize(rating_question)
     @rating_question = rating_question
-    # @url = "http://localhost:3000/rating_questions"
   end
 
   def to_props

@@ -5,6 +5,7 @@ import RatingQuestion from "./RatingQuestion";
 interface Question {
   id: string;
   title: string;
+  url: string;
 }
 
 interface SingleRatingQuestionsProps {
@@ -26,6 +27,7 @@ class SingleRatingQuestion extends React.Component<
           deleteQuestion={this.props.deleteQuestion}
           key={this.props.question.id}
           {...this.props.question}
+          // url={this.props.url}
         />
         <a href="/">All questions</a>
       </div>

@@ -6,17 +6,26 @@ import axios from "axios";
 interface RatingQuestionProps {
   id: string;
   title: string;
+  url: string;
   deleteQuestion(id: string): void;
 }
 
-class RatingQuestion extends React.Component<RatingQuestionProps> {
+interface RatingQuestionState {
+  title: string;
+  editingTitle: boolean;
+}
+
+class RatingQuestion extends React.Component<
+  RatingQuestionProps,
+  RatingQuestionState
+> {
   state = {
+    title: this.props.title,
     editingTitle: false
-    // value: this.props.title
   };
   changeQuestion = value => {
     axios
-      .put(`http://localhost:3000/rating_questions/${this.props.id}`, {
+      .put(this.props.url, {
         title: value
       })
       .then(response => this.setState({ title: value, editingTitle: false }));
@@ -34,7 +43,7 @@ class RatingQuestion extends React.Component<RatingQuestionProps> {
     return (
       <div>
         <a href={`/rating_questions/${this.props.id}`}>
-          <div className={styles.ratingQuestion}>{this.props.title}</div>
+          <div className={styles.ratingQuestion}>{this.state.title}</div>
         </a>
         <a className={styles.options} onClick={this.beginEditing}>
           edit
@@ -54,6 +63,7 @@ class RatingQuestion extends React.Component<RatingQuestionProps> {
           id={this.props.id}
           changeQuestion={this.changeQuestion}
           update={true}
+          title={this.props.title}
         />
       );
     }

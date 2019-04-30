@@ -2,35 +2,43 @@ import * as React from "react";
 import * as styles from "./Form.module.scss";
 import axios from "axios";
 
-class Form extends React.Component {
+type UpdateFormProps = {
+  update: true;
+  id: string;
+  title: string;
+  changeQuestion(value: string): void;
+};
+
+type CreateFormProps = {
+  update: false;
+  addQuestion(data: string): void;
+};
+
+type FormProps = UpdateFormProps | CreateFormProps;
+
+class Form extends React.Component<FormProps> {
   state = {
-    title: ""
+    title: "",
+    value: ""
   };
   handleChange = event => {
     this.setState({ title: event.target.value });
   };
-  addNew = () => {
+
+  addNew() {
     axios
       .post("http://localhost:3000/rating_questions.json", {
         title: this.state.title
       })
-      .then(response => this.props.addQuestion(response.data));
-  };
-
-  editExisting = () => {
-    axios
-      .patch(`http://localhost:3000/rating_questions/${this.props.id}`, {
-        title: this.state.title
-      })
       .then(response =>
-        this.setState({ title: this.state.title, editingTitle: false })
+        (this.props as CreateFormProps).addQuestion(response.data)
       );
-  };
+  }
 
   handleFormSubmit = event => {
     event.preventDefault();
     if (this.props.update) {
-      this.editExisting();
+      this.props.changeQuestion(this.state.title);
     } else {
       this.addNew();
     }
@@ -44,7 +52,7 @@ class Form extends React.Component {
             <span className={styles.formTitle}>Title:</span>
             <input
               type="text"
-              value={this.state.value}
+              defaultValue={this.state.value}
               onChange={this.handleChange}
             />
           </label>
@@ -53,7 +61,6 @@ class Form extends React.Component {
         <a className={styles.options} href="/">
           All
         </a>
-        <h3>{this.props.title}</h3>
       </div>
     );
   }

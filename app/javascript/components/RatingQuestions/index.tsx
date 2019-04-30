@@ -8,6 +8,9 @@ interface Question {
   id: string;
   title: string;
   url: string;
+  // addQuestion(data: string): void;
+  // deleteQuestion(id: string): void;
+  // fReact(id: string): void;
 }
 
 interface RatingQuestionsProps {
@@ -30,16 +33,9 @@ class RatingQuestions extends React.Component<
     console.log("this is addQuestion" + question);
     let newQuestions = this.state.questions;
     newQuestions.push(question);
-
-    // console.log(this.state.questions.push(question));
     this.setState({ questions: newQuestions });
   };
 
-  // fetchQuestions = () => {
-  //   axios
-  //     .get("http://localhost:3000/rating_questions")
-  //     .then(response => this.setState({ questions: response.data.title }));
-  // };
   deleteQuestion = id => {
     axios
       .delete(`http://localhost:3000/rating_questions/${id}`)
@@ -60,7 +56,7 @@ class RatingQuestions extends React.Component<
         <a className={styles.listOfQuestionsLink} href="/rating_questions/new">
           New Question
         </a>
-        <Form addQuestion={this.addQuestion} />
+        <Form addQuestion={this.addQuestion} update={false} />
         <div
           className={styles.listOfQuestions}
           data-automation-id="questions-list"
