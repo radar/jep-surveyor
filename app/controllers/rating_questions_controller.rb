@@ -44,6 +44,11 @@ class RatingQuestionsController < ApplicationController
     end
   end
 
+  def destroy
+    @rating_question = RatingQuestion.find(params[:id])
+    @rating_question.destroy
+  end
+
   def show
     @rating_question = RatingQuestion.find(params[:id])
   end
@@ -51,6 +56,6 @@ class RatingQuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:rating_question).permit(:title)
+    params.require(:rating_question).permit(:title, :id)
   end
 end
