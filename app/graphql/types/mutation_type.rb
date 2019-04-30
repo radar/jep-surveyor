@@ -15,7 +15,9 @@ module Types
     end
 
     def create_question(title:, survey_id:)
-      rating_question = RatingQuestion.create(title: title, survey_id: survey_id)
+      # rating_question = RatingQuestion.create(title: title)
+      survey = Survey.find(survey_id: survey_id)
+      rating_question = survey.rating_questions.create(title: title)
     end
 
     def delete_question(id:)
