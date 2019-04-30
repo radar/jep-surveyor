@@ -4,6 +4,6 @@ module Types
   end
 
   def errors
-    object.error.full_message
+    object.errors.full_message
   end
 end
