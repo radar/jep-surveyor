@@ -1,6 +1,6 @@
 class Survey
   include Mongoid::Document
-  has_many :rating_question
+  has_many :rating_question, dependent: :destroy
   
-  field :title, type: String
+  field :name, type: String
 end
