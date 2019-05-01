@@ -16,6 +16,10 @@ module Types
       argument :tag, String, required: false
     end
 
+    field :create_survey, CreateSurveyResult, null: false do
+      argument :name, String, required: true
+    end
+
     def create_question(title:,survey_id:)
       RatingQuestion.create(title: title,survey_id: survey_id)
     end
@@ -36,5 +40,9 @@ module Types
       @question
     end
 
+
+    def create_survey(name:)
+      Survey.create(name: name)
+    end
   end
 end
