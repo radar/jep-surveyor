@@ -4,5 +4,7 @@ class RatingQuestion
 
   field :title, type: String
 
-  # validates :survey_id, presence: true
+  validates :survey_id, presence: true
+  validates :title, presence: true
+
 end

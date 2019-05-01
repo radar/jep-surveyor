@@ -8,7 +8,7 @@ module Types
       Survey.create(name: name)
     end
 
-    field :createQuestion, QuestionType, null: false do
+    field :createQuestion, CreateRatingQuestionResult, null: false do
       argument :title, String, required: true
       argument :survey_id, ID, required: true
     end
