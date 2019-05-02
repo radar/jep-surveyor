@@ -8,7 +8,7 @@ module Mutations
 
     def resolve(title:, survey_id:)
       survey = Survey.find(survey_id)
-      rating_question = survey.rating_questions.create(title: title)
+      survey.rating_questions.create(title: title)
     end
   end
 end
