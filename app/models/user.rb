@@ -6,6 +6,7 @@ class User
   has_secure_password
   field :email, type: String
   field :password_digest, type: String
+  belongs_to :account
   validates :email, :password_digest, length: {minimum: 2}, allow_blank: false
 end
 
