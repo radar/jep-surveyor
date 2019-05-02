@@ -16,6 +16,11 @@ module Types
       argument :tag, String, required: false
     end
 
+    field :login_authorisation, LoginResult, null: false do 
+      argument :email, String, required: true
+      argument :password, String, required: true
+    end
+
     field :create_survey, CreateSurveyResult, null: false do
       argument :name, String, required: true
     end
@@ -43,6 +48,13 @@ module Types
 
     def create_survey(name:)
       Survey.create(name: name)
+    end
+
+    def login_authorisation( email:, password:)
+      @user = User.find_by(email: email) 
+      return unless @user
+      return unless @user.authenticate(password)
+      @user
     end
   end
 end
