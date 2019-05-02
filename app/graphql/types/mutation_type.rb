@@ -46,18 +46,12 @@ module Types
       return unless user
       user.authenticate(password)
       
-      
       payload = { id: user.id, email: user.email }
       
       token = JWT.encode payload, ENV["HMAC_SECRET"], 'HS256'
-      puts "TOKEN"
-      puts token
 
-      decoded_token = JWT.decode token, ENV["HMAC_SECRET"], true, { algorithm: 'HS256' }
-      puts "DECODED TOKEN"
-      puts decoded_token
-
-      { email: user.email, token: token, user_id: user.id }
+      # login details
+      { user_id: user.id, email: user.email, token: token }
     end
 
 
