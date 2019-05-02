@@ -3,46 +3,50 @@ module Types
     field :createSurvey, SurveyType, null: false do
       argument :name, String, required: true
     end
-
-    def create_survey(name:)
-      Survey.create(name: name)
-    end
-
+    
     field :createQuestion, CreateRatingQuestionResult, null: false do
       argument :title, String, required: true
       argument :survey_id, ID, required: true
+    end
+    
+    field :deleteQuestion, DeleteQuestionResult, null: false do
+      argument :id, ID, required: true
+    end
+
+    field :updateQuestion, UpdateQuestionResult, null: false do
+      argument :id, ID, required: true
+      argument :title, String, required: true
+    end
+    
+    field :login, LoginResult, null: false do
+      argument :email, String, required: true
+      argument :password, String, required: true
+    end
+    
+    def create_survey(name:)
+      Survey.create(name: name)
     end
 
     def create_question(survey_id:, title:) 
       RatingQuestion.create(survey_id: survey_id, title: title)
     end
 
-    field :deleteQuestion, QuestionType, null: false do
-      argument :id, ID, required: true
-    end
-
     def delete_question(id:)
-      @rating_question = RatingQuestion.find(id: id)
-      if @rating_question
-        @rating_question.destroy
-        @rating_question
+      begin
+        @rating_question = RatingQuestion.find(id: id)
+        if @rating_question
+          @rating_question.destroy
+          @rating_question
+        end
+      rescue Mongoid::Errors::DocumentNotFound => error
+        error
       end
     end
 
-    field :modifyQuestion, QuestionType, null: false do
-      argument :id, ID, required: true
-      argument :title, String, required: true
-    end
-
-    def modify_question(id:, title:)
+    def update_question(id:, title:)
       @rating_question = RatingQuestion.find(id: id)
       @rating_question.update(title: title)
       @rating_question
-    end
-
-    field :login, LoginResult, null: false do
-      argument :email, String, required: true
-      argument :password, String, required: true
     end
 
     def login(email:, password:)
