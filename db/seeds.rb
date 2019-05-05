@@ -6,6 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Account.destroy_all
+User.destroy_all
+RatingQuestion.destroy_all
+
 puts "Create CA"
 ca = Account.create(name:'Culture Amp')
 puts "create first user"
@@ -27,7 +31,7 @@ surveys = [survey1, survey2]
 puts "create questions for each survey"
 surveys.each do |survey|
   questions.each do |question|
-    RatingQuestion.create(survey_id: survey1, title: question)
+    RatingQuestion.create(survey_id: survey, title: question)
   end
 end
 

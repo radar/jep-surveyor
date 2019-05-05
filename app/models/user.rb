@@ -12,12 +12,16 @@ class User
   def token
     JWT.encode payload, ENV['PRIVATE_KEY'], 'HS256'
   end
+
+  def self.decode_payload(token:)
+    JWT.decode token, ENV['PRIVATE_KEY'], true, { algorithm: 'HS256' }
+  end
   
   private
   def payload
     {
       email: email,
-      id: id
+      id: id.to_s
     }
   end
 end

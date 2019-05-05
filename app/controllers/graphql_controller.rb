@@ -5,7 +5,8 @@ class GraphqlController < ApplicationController
     operation_name = params[:operationName]
     context = {
       # Query context goes here, for example:
-      current_user: current_user(token)
+      current_user: current_user(token),
+      # current_account: current_account(token)
     }
     result = SurveyorSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
@@ -15,14 +16,22 @@ class GraphqlController < ApplicationController
   end
 
   private
-
   def token
     request.headers['Authorization']
   end
 
+  def account
+    current_user = current_user(token)
+    current_user.account
+  end
+
+  
   def current_user(token)
     return unless token
-    decoded_token = JWT.decode token, ENV['PRIVATE_KEY'], true, { algorithm: 'HS256' }
+    token = token.split.last
+    payload = User.decode_payload(token: token)
+    return unless payload
+    User.find(payload.first['id'])
   end
 
   # Handle form data, JSON body, or a blank value
