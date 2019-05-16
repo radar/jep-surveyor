@@ -51,10 +51,13 @@ module Types
     end
 
     def login_authorisation( email:, password:)
+      # hmac_secret = 'my$ecretK3y'
+      # token = JWT.encode payload, hmac_secret, 'HS256'
       @user = User.find_by(email: email) 
       return unless @user
       return unless @user.authenticate(password)
       @user
+      # https://www.youtube.com/watch?v=VF4D8H9GGRI
     end
   end
 end

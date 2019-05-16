@@ -9,11 +9,8 @@ module Types
       argument :id, ID, required: true
     end
 
-   
-
     def questions
       RatingQuestion.all
-   
     end
 
     def all_questions_by_survey(id:)

@@ -3,11 +3,7 @@ module Types
     possible_types QuestionType, FailedCreateRatingQuestionResult
 
     def self.resolve_type(object, _context)
-      if object.persisted?
-        QuestionType
-      else
-        FailedCreateRatingQuestionResult
-      end
+      object.persisted? ? QuestionType : FailedCreateRatingQuestionResult
     end
   end
 end
