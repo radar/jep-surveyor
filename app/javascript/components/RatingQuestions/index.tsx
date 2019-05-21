@@ -6,6 +6,7 @@ import RatingQuestion from './RatingQuestion'
 import Form from './Form';
 
 interface Question {
+  rating_question_url: string,
   id: string,
   title: string,
   url: string
@@ -25,13 +26,12 @@ class RatingQuestions extends React.Component<RatingQuestionsProps, {}> {
     e.preventDefault();
     console.log("delete!")
     let url = this.state.questions["url"]
-    axios.delete()
+    axios.delete(url)
     .then((result) => {
         console.log(result.data)
-        this.setState(questions = result.data)
+        this.setState(this.state.questions = result.data)
         // this.props.questions = result.question
     })
-    }
   }
 
   addQuestion = (question) => {
@@ -53,7 +53,7 @@ class RatingQuestions extends React.Component<RatingQuestionsProps, {}> {
                   </a>
                 </a>,
           )}
-      <Form rating_question_url="/rating_questions.json" addQuestion={this.addQuestion}/>
+        <Form url='' update={false} rating_question_url="/rating_questions.json" addQuestion={this.addQuestion}/>
       </div>
 
     )

@@ -38,7 +38,7 @@ class ShowRatingQuestion extends React.Component<ShowRatingQuestionProps, ShowRa
         return(
             <div className={styles.ratingQuestion} data-automation-id='question'>
                 {this.state.question.title}
-                <Form url={this.props.question.url} updateQuestion={this.updateQuestion}    update={true}/>
+                <Form rating_question_url='' url={this.props.question.url} updateQuestion={this.updateQuestion} update={true}/>
             </div>
         )
     }

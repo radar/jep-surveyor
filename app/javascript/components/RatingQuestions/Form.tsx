@@ -6,6 +6,7 @@ interface FormProps{
     addQuestion?: Function
     update: boolean
     updateQuestion?: Function
+    rating_question_url: string
 }
 
 class Form extends React.Component<FormProps> {
@@ -63,7 +64,7 @@ class Form extends React.Component<FormProps> {
                     Question:
                     <input name="title" type="text" placeholder="Question" onChange={this.handleChange}/>
                 </label>
-                    <button type="Submit">Add a question</button>
+                    <button type="submit">Add a question</button>
                 </form>
             </div>
         );
