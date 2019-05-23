@@ -2,6 +2,8 @@ import * as React from "react";
 import * as styles from "./RatingQuestion.module.scss";
 import Form from "./Form";
 import axios from "axios";
+import { Button, Icon } from "@cultureamp/kaizen-component-library";
+// import closeIcon from "@cultureamp/kaizen-component-library/icons/closeIcon.svg";
 
 interface RatingQuestionProps {
   id: string;
@@ -41,17 +43,28 @@ class RatingQuestion extends React.Component<
   };
   render() {
     return (
-      <div>
-        <a href={`/rating_questions/${this.props.id}`}>
-          <div className={styles.ratingQuestion}>{this.state.title}</div>
-        </a>
-        <a className={styles.options} onClick={this.beginEditing}>
-          edit
-        </a>
-        {this.renderEditForm()}
-        <a className={styles.options} onClick={this.confirmDelete}>
-          delete
-        </a>
+      <div className={styles.wrapper}>
+        <div className={styles.ratingQuestion}>
+          <div>
+            <a
+              href={`/rating_questions/${this.props.id}`}
+              className={styles.title}
+            >
+              <span>{this.state.title}</span>
+            </a>
+          </div>
+          <Button label="Edit" automationId="demo-button">
+            {" "}
+            <a onClick={this.beginEditing}>{/* edit */}</a>
+            {/* <Icon icon={closeIcon} title="Warning" /> */}
+          </Button>
+          {this.renderEditForm()}
+          <Button label="Delete" automationId="demo-button-D">
+            <a onClick={this.confirmDelete} className={styles.deleteButton}>
+              delete
+            </a>
+          </Button>
+        </div>
       </div>
     );
   }

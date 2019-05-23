@@ -8,9 +8,6 @@ interface Question {
   id: string;
   title: string;
   url: string;
-  // addQuestion(data: string): void;
-  // deleteQuestion(id: string): void;
-  // fReact(id: string): void;
 }
 
 interface RatingQuestionsProps {
@@ -39,10 +36,10 @@ class RatingQuestions extends React.Component<
   deleteQuestion = id => {
     axios
       .delete(`http://localhost:3000/rating_questions/${id}`)
-      .then((response: {}) => this.fReact(id))
+      .then((response: {}) => this.setNewAllQuestionsListAfterDelete(id))
       .catch((err: {}) => console.log(err));
   };
-  fReact = id => {
+  setNewAllQuestionsListAfterDelete = id => {
     console.log(this.state.questions);
     const newArr = this.state.questions.filter(question => question.id !== id);
     console.log(newArr);
@@ -52,7 +49,7 @@ class RatingQuestions extends React.Component<
   render() {
     return (
       <div className={styles.mainBody}>
-        <h1 className={styles.mainTitle}>React+Rails</h1>
+        <h1 className={styles.mainTitle}>Happiness at work survey</h1>
         <a className={styles.listOfQuestionsLink} href="/rating_questions/new">
           New Question
         </a>
@@ -61,16 +58,17 @@ class RatingQuestions extends React.Component<
           className={styles.listOfQuestions}
           data-automation-id="questions-list"
         >
+          <div className={styles.wrapper} />
           {this.state.questions.map(question => (
             <RatingQuestion
               deleteQuestion={this.deleteQuestion}
               {...question}
             />
           ))}
-          <a className={styles.listOfQuestionsLink} href="/rating_questions">
-            all questions
-          </a>
         </div>
+        <a className={styles.listOfQuestionsLink} href="/rating_questions">
+          all questions
+        </a>
       </div>
     );
   }

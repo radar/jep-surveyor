@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as styles from "./Form.module.scss";
 import axios from "axios";
+import { Button, Text } from "@cultureamp/kaizen-component-library";
 
 type UpdateFormProps = {
   update: true;
@@ -49,18 +50,25 @@ class Form extends React.Component<FormProps> {
       <div className={styles.formStyling}>
         <form onSubmit={this.handleFormSubmit}>
           <label>
-            <span className={styles.formTitle}>Title:</span>
+            <Text tag="h1" className={styles.formTitle}>
+              Title:
+            </Text>
             <input
+              className={styles.inputFieldStyling}
               type="text"
               defaultValue={this.state.value}
               onChange={this.handleChange}
+              placeholder="Please input new rating question here"
             />
           </label>
-          <input type="submit" value="Submit" />
+          <Button label="Submit">
+            <input
+              className={styles.inputButtonStyling}
+              type="submit"
+              value="Submit"
+            />
+          </Button>
         </form>
-        <a className={styles.options} href="/">
-          All
-        </a>
       </div>
     );
   }

@@ -19,10 +19,7 @@ class SingleRatingQuestion extends React.Component<
 > {
   render() {
     return (
-      <div
-        className={styles.listOfQuestions}
-        data-automation-id="questions-list"
-      >
+      <div data-automation-id="questions-list">
         <RatingQuestion
           deleteQuestion={this.props.deleteQuestion}
           key={this.props.question.id}
