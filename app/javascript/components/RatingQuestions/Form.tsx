@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import { Button } from "@cultureamp/kaizen-component-library"
 
 interface FormProps{
     url: string
@@ -64,7 +65,7 @@ class Form extends React.Component<FormProps> {
                     Question:
                     <input name="title" type="text" placeholder="Question" onChange={this.handleChange}/>
                 </label>
-                    <button type="submit">Add a question</button>
+                    <Button label="Submit" destructive type="submit" />
                 </form>
             </div>
         );
