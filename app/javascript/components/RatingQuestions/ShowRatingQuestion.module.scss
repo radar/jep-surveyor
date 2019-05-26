@@ -1,6 +1,5 @@
 .ratingQuestion {
     font: 12pt "Comic Sans MS";
-    background: linear-gradient(to left, #743ad5, #d53a9d);
     color: white;
     border: 5px solid black;
     border-radius: 10px;
@@ -8,3 +7,7 @@
     margin: 1rem;
   }
   
+  // background: linear-gradient(to left, #743ad5, #d53a9d);
+  .MuiGrid-grid-xs-12	{
+    background-color:red !important
+  }

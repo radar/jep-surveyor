@@ -4,6 +4,11 @@ import axios from 'axios'
 import * as styles from './index.module.scss'
 import RatingQuestion from './RatingQuestion'
 import Form from './Form';
+import Grid from '@material-ui/core/Grid';
+import withWidth from '@material-ui/core/withWidth';
+import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import { Hash } from 'crypto';
 
 interface Question {
   rating_question_url: string,
@@ -14,14 +19,16 @@ interface Question {
 
 interface RatingQuestionsProps {
   questions: Question[],
-  url: string
+  url: string,
 }
+
 
 class RatingQuestions extends React.Component<RatingQuestionsProps, {}> {
   state = {
     questions: this.props.questions
   }
 
+  
   handleDelete= (e) => {
     e.preventDefault();
     console.log("delete!")
@@ -44,16 +51,20 @@ class RatingQuestions extends React.Component<RatingQuestionsProps, {}> {
     console.log(this.state.questions)
     return(
       <div className={styles.list} data-automation-id='questions-list'>
-        {this.state.questions.map((question) => 
-              <a href={question.rating_question_url}>
-                <RatingQuestion key={question.id} {...question} />
-                  <a className="btn btn-danger btn-xs"
-                    onClick={this.handleDelete} >
-                    Delete
-                  </a>
-                </a>,
-          )}
-        <Form url='' update={false} rating_question_url="/rating_questions.json" addQuestion={this.addQuestion}/>
+        <Grid container spacing={6}>
+          {this.state.questions.map((question) => 
+            <Grid item xs={12} sm={6} md={3}>
+              <a style={{ textDecoration: 'none' }} href={question.rating_question_url}>
+                <RatingQuestion style='' key={question.id} {...question} />
+                <a className="btn btn-danger btn-xs"
+                  onClick={this.handleDelete} >
+                  Delete
+                </a>
+              </a>,
+            </Grid>
+            )}
+        </Grid>
+          <Form url='' update={false} rating_question_url="/rating_questions.json" addQuestion={this.addQuestion}/>
       </div>
 
     )
