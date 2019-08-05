@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as styles from "./index.module.scss";
-import RatingQuestion from "./RatingQuestion";
+// import RatingQuestion from "./RatingQuestion";
 
 interface Question {
   id: string;
@@ -20,12 +20,12 @@ class SingleRatingQuestion extends React.Component<
   render() {
     return (
       <div data-automation-id="questions-list">
-        <RatingQuestion
+        {/* <RatingQuestion
           deleteQuestion={this.props.deleteQuestion}
           key={this.props.question.id}
           {...this.props.question}
-          // url={this.props.url}
-        />
+        /> */}
+        {/* {this.props.title} */}
         <a href="/">All questions</a>
       </div>
     );

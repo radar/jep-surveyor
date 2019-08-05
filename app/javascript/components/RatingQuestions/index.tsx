@@ -19,10 +19,7 @@ interface RatingQuestionsState {
   questions: Question[];
 }
 
-class RatingQuestions extends React.Component<
-  RatingQuestionsProps,
-  RatingQuestionsState
-> {
+class RatingQuestions extends React.Component<RatingQuestionsProps> {
   state = {
     questions: this.props.questions
   };
@@ -61,6 +58,7 @@ class RatingQuestions extends React.Component<
           <div className={styles.wrapper} />
           {this.state.questions.map(question => (
             <RatingQuestion
+              key={question.id}
               deleteQuestion={this.deleteQuestion}
               {...question}
             />

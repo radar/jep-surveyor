@@ -3,6 +3,7 @@ import * as styles from "./RatingQuestion.module.scss";
 import Form from "./Form";
 import axios from "axios";
 import { Button, Icon } from "@cultureamp/kaizen-component-library";
+// import SingleRatingQuestion from "./SingleRatingQuestion";
 // import closeIcon from "@cultureamp/kaizen-component-library/icons/closeIcon.svg";
 
 interface RatingQuestionProps {
@@ -17,10 +18,7 @@ interface RatingQuestionState {
   editingTitle: boolean;
 }
 
-class RatingQuestion extends React.Component<
-  RatingQuestionProps,
-  RatingQuestionState
-> {
+class RatingQuestion extends React.Component<RatingQuestionProps> {
   state = {
     title: this.props.title,
     editingTitle: false
@@ -46,6 +44,7 @@ class RatingQuestion extends React.Component<
       <div className={styles.wrapper}>
         <div className={styles.ratingQuestion}>
           <div>
+            {/* <SingleRatingQuestion props={this.props.title} /> */}
             <a
               href={`/rating_questions/${this.props.id}`}
               className={styles.title}
