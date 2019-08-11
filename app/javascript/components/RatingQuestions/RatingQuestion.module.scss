@@ -1,9 +1,27 @@
-.ratingQuestion {
+.title{
   font: 12pt "Comic Sans MS";
-  background: linear-gradient(to left, #743ad5, #d53a9d);
+  text-decoration: none;
   color: white;
-  border: 5px solid black;
-  border-radius: 10px;
-  padding: 1rem;
-  margin: 1rem;
 }
+.container {
+  background: linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%);
+  border-radius: 10px;
+  border: 0;
+  height: 100;
+  margin: 1rem;
+  padding: 1rem;
+  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
+  @media only screen and (min-width: 600px) {
+    width: calc(50% - 1);
+    background: linear-gradient(45deg, rgb(203, 85, 115) 30%, rgb(255, 0, 0) 90%);
+  };
+
+  @media only screen and (min-width: 1100px) {
+    width: calc(50% - 1);
+    background: linear-gradient(45deg, rgb(203, 85, 115) 30%, rgb(43, 255, 0) 90%);
+  };
+
+  @media only screen and (min-width: 1460px) {
+    background: linear-gradient(45deg, rgb(203, 85, 115) 30%, rgb(255, 230, 0) 90%);
+  }
+};

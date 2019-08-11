@@ -11,13 +11,10 @@ class RatingQuestionProps
         {
           id: rating_question.id.to_s,
           title: rating_question.title,
-          randomNumber: random_number
+          rating_question_url: "/rating_questions/#{rating_question.id.to_s}"
         }
       end
     }
   end
 
-  def random_number
-    rand(100)
-  end
 end
