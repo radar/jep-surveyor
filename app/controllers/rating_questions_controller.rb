@@ -22,6 +22,6 @@ class RatingQuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:rating_question).permit(:title)
+    params.require(:rating_question).permit(:title, :url)
   end
 end
